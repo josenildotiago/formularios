@@ -1,3 +1,99 @@
+@import "../../node_modules/font-awesome/css/font-awesome.css";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+* {
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+}
+
+.bg-pmmblue{
+    background-color: #023e84;
+}
+.color-pmmblue{
+    color: #023e84;
+}
+
+.text-justified{
+    text-align: justify;
+}
+
+#bg-right-column {
+    background-color: #023e84;
+    background-image: url("./images/atendimento_medico.png");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+
+    min-height: calc(100vh - 4rem);
+    height: 100%;
+}
+
+
+/*constraste*/
+.contraste,
+.contraste nav,
+.contraste div:not(.item),
+.contraste li,
+.contraste ol,
+.contraste header,
+.contraste footer,
+.contraste section,
+.contraste main,
+.contraste aside,
+.contraste article {
+    background: black !important;
+    color: white !important;
+}
+
+.contraste h1,
+.contraste h2,
+.contraste h3,
+.contraste h4,
+.contraste h5,
+.contraste h6,
+.contraste p,
+.contraste label,
+.contraste strong,
+.contraste em,
+.contraste cite,
+.contraste q,
+.contraste i,
+.contraste b,
+.contraste u,
+.contraste span {
+    color: white !important;
+}
+
+.contraste a,
+.contraste a span,
+.contraste a i
+{
+    color: yellow !important;
+}
+
+.contraste button,
+.contraste input[type=button],
+.contraste input[type=reset],
+.contraste input[type=submit] {
+    background: black !important;
+    color: yellow !important;
+    border: none !important;
+}
+
+.contraste #featured-links-section .col a,
+.contraste .btn-pmmblue {
+    background: black !important;
+    color: yellow !important;
+    border: 1px solid yellow !important;
+}
+
+.contraste .active.custom-border:after,
+.contraste .vaccine-divider {
+    background: yellow !important;
+}
+
+/* .contraste img {filter: contrast(100%) brightness(0%) invert(100%);} */
