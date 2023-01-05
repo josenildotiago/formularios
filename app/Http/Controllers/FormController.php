@@ -26,7 +26,15 @@ class FormController extends Controller
         $context  = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
         $jsom = json_decode($result);
-        dd($request, $jsom);
+
+        if($jsom->success){
+            // dd($request, $jsom);
+            return redirect()->route('webview');
+        }
+
+        return back()->with([
+            'erro' => 'Necessário clicar em não sou um robô!!',
+        ]);
     }
 
     /**

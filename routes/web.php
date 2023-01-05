@@ -35,4 +35,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::post('/proceguir', [\App\Http\Controllers\FormController::class, 'index'])->name('proceguir');
+Route::get('/webview', [\App\Http\Controllers\SiteController::class, 'create'])->name('webview');
 require __DIR__.'/auth.php';
