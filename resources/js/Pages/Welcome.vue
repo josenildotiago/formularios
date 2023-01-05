@@ -7,14 +7,12 @@ import { defineProps } from 'vue';
 
 
 defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
-    laravelVersion: String,
-    phpVersion: String,
+    csrfToken: String
 });
 </script>
 
 <template>
+
     <Head title="Welcome" />
     <div>
         <div id="acess-bar" class="bg-pmmblue text-white">
@@ -33,48 +31,49 @@ defineProps({
                         <a href="#" onclick="window.diminuirFonte()">
                             <i class="fa fa-minus mx-2" aria-hidden="true"></i>
                         </a>
-
                     </li>
                 </ul>
             </div>
         </div>
-
         <div class="mx-auto">
             <div class="grid sm:grid-cols-1 md:grid-cols-2 h-full">
-
                 <div class="col p-10">
-
                     <h2 class="text-3xl font-bold color-pmmblue">Pesquisa</h2>
-
-                    <p class="text-xl font-normal color-pmmblue my-5">Efeitos da pandemia de covid-19 nos profissionais de saúde da SMS de Mossoró.</p>
-
+                    <p class="text-xl font-normal color-pmmblue my-5">Efeitos da pandemia de covid-19 nos profissionais
+                        de saúde da SMS de Mossoró.</p>
                     <div class="card px-4 py-6 bg-pmmblue rounded-lg text-white mb-8">
                         <p class="mb-2 text-justified">
-                            Convidamos você a participar da pesquisa “Efeitos da pandemia de covid-19 nos profissionais de saúde da Secretaria Municipal de Saúde do município de Mossoró”, que tem como objetivo coletar dados e produzir indicadores para caracterizar o cenário e oferecer insumos para avaliação, planejamento, apoio e assistência à saúde aos profissionais da saúde da SMS de Mossoró.
+                            Convidamos você a participar da pesquisa “Efeitos da pandemia de covid-19 nos profissionais
+                            de saúde da Secretaria Municipal de Saúde do município de Mossoró”, que tem como objetivo
+                            coletar dados e produzir indicadores para caracterizar o cenário e oferecer insumos para
+                            avaliação, planejamento, apoio e assistência à saúde aos profissionais da saúde da SMS de
+                            Mossoró.
                         </p>
                         <p class="mb-2 text-justified">
-                            São convidados a participar da pesquisa todos os trabalhadores e as trabalhadoras da Secretaria Municipal de Saúde de Mossoró, independente do cargo e função que ocupa.
-Para sucesso desta pesquisa contamos com a sua valiosa participação.
+                            São convidados a participar da pesquisa todos os trabalhadores e as trabalhadoras da
+                            Secretaria Municipal de Saúde de Mossoró, independente do cargo e função que ocupa.
+                            Para sucesso desta pesquisa contamos com a sua valiosa participação.
                         </p>
                     </div>
-
                     <h3 class="mb-3 color-pmmblue">Digite o código CNES da sua unidade: </h3>
-                    <form class="mb-10">
-
+                    <form class="mb-10" action="/proceguir" method="POST">
+                        <input type="hidden" name="_token" v-bind:value="csrfToken">
                         <div class="flex flex-grow mb-10">
-                            <input type="text" class="w-full border-transparent rounded shadow-lg bg-[#F3F3F3]" placeholder="CNES">
+                            <input type="text" name="cnes"
+                                class="w-full border-transparent rounded shadow-lg bg-[#F3F3F3]" placeholder="CNES">
                         </div>
                         <div class="flex">
                             <!-- recaptcha -->
                             <div class="flex-grow mr-4">
-                                <recaptcha class="g-recaptcha" data-sitekey="6Lc9XbAZAAAAAMfU0H6B5zV5m5lYkZj1b8I5w5mQ"></recaptcha>
+                                <!-- <recaptcha class="g-recaptcha" data-sitekey="6Lc9XbAZAAAAAMfU0H6B5zV5m5lYkZj1b8I5w5mQ"></recaptcha> -->
+                                <div class="g-recaptcha m-3" data-sitekey="6LdHH5UUAAAAAIrf3rzUZlYRiE9U4EdYfl8twDye">
+                                </div>
                             </div>
                             <div class="">
                                 <button class="rounded-lg bg-pmmblue text-white px-20 py-4 text-2xl">Participar</button>
                             </div>
                         </div>
                     </form>
-
                     <div id="apoiadores">
                         <h3 class="color-pmmblue mb-3">Apoiadores:</h3>
                         <ul class="flex justify-between place-content-center">
@@ -116,12 +115,10 @@ Para sucesso desta pesquisa contamos com a sua valiosa participação.
 <!-- css -->
 <style scoped>
 
-
-
 </style>
 
-
 <!-- script -->
+
 
 <script>
 
@@ -183,6 +180,10 @@ function ativarContraste() {
 function saveConstrasteOnLocalStorage(value) {
     localStorage.setItem("contraste", value);
 }
-
+mounted: {
+    const script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js';
+    document.head.appendChild(script);
+}
 
 </script>
