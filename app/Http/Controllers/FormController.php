@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FormularioRequest;
+use App\Models\UnidadeDeSaude;
 use Illuminate\Http\Request;
 
 class FormController extends Controller
@@ -11,8 +13,11 @@ class FormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(FormularioRequest $request)
     {
+        $cnes = $request->input('cnes');
+        $unit = UnidadeDeSaude::where('cnes', $cnes)->first();
+    
         $url = "https://www.google.com/recaptcha/api/siteverify";
         $respon = $request['g-recaptcha-response'];
         $data = array('secret' => "6LdHH5UUAAAAAMDIr3lCzzyALxsTtic7F4kHxHZ0", 'response' => $respon);
@@ -28,8 +33,16 @@ class FormController extends Controller
         $jsom = json_decode($result);
 
         if($jsom->success){
-            // dd($request, $jsom);
-            return redirect()->route('webview');
+            if ($unit) {
+                $unit->increment('count');
+                $unit->save();
+                return redirect()->route('webview');
+            } else {
+                return back()->with([
+                    'erro' => 'Número de unidade não encontrado!!',
+                ]);
+            }
+            
         }
 
         return back()->with([

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FormRequest extends FormRequest
+class FormularioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class FormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class FormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'cnes' => 'required|string|max:191',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'cnes.required' => 'O campo CNES é obrigatório',
+            'cnes.string' => 'O campo CNES deve ser somente texto',
+            'cnes.string' => 'Máximo de 191 caracteres',
         ];
     }
 }
