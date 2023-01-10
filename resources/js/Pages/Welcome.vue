@@ -13,7 +13,7 @@ defineProps({
 
 <template>
 
-    <Head title="Welcome" />
+    <Head title="Pesquisa - Prefeitura de Mossoró" />
     <div>
         <div id="acess-bar" class="bg-pmmblue text-white">
             <div class="container mx-auto flex flex-row py-1 px-3">
@@ -89,15 +89,15 @@ defineProps({
                             </svg>
                             {{ $page.props.errado.erro }}
                         </div>
-                        <div class="flex">
+                        <div class="flex lg:flex-row md:flex-col">
                             <!-- recaptcha -->
-                            <div class="flex-grow mr-4">
+                            <div class="flex-auto mr-4">
                                 <!-- <recaptcha class="g-recaptcha" data-sitekey="6Lc9XbAZAAAAAMfU0H6B5zV5m5lYkZj1b8I5w5mQ"></recaptcha> -->
                                 <div class="g-recaptcha m-3" data-sitekey="6LdHH5UUAAAAAIrf3rzUZlYRiE9U4EdYfl8twDye">
                                 </div>
                             </div>
-                            <div class="">
-                                <button class="rounded-lg bg-pmmblue text-white px-20 py-4 text-2xl">
+                            <div class="flex-auto w-full md:flex-grow min-w-36 md:mt-3">
+                                <button class="w-full rounded-lg bg-pmmblue text-white py-4 text-2xl">
                                     Participar
                                 </button>
                             </div>

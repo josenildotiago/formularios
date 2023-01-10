@@ -97,3 +97,6 @@
 }
 
 /* .contraste img {filter: contrast(100%) brightness(0%) invert(100%);} */
+.g-recaptcha{
+    margin: 0 !important;
+}
