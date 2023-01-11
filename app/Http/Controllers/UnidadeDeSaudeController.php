@@ -46,7 +46,33 @@ class UnidadeDeSaudeController extends Controller
      */
     public function show(UnidadeDeSaude $unidadeDeSaude)
     {
-        //
+        $data = UnidadeDeSaude::select('unidade', 'count')->get();
+        return $data->map(function ($item) {
+            return [
+                'unidade' => $item->unidade,
+                'count' => (int) $item->count
+            ];
+        });
+
+        // $counts = $data->map(function ($item) {
+        //     return (int) $item->count;
+        // });
+        // $units = $data->map(function ($item) {
+        //     return $item->unidade;
+        // });
+
+
+        // $chartData = [
+        //     'labels' => $units,
+        //     'datasets' => [
+        //         [
+        //             'label' => 'Unidade',
+        //             'data' => $counts,
+        //         ],
+        //     ],
+        // ];
+        // return $chartData;
+
     }
 
     /**
@@ -81,5 +107,15 @@ class UnidadeDeSaudeController extends Controller
     public function destroy(UnidadeDeSaude $unidadeDeSaude)
     {
         //
+    }
+
+    public function count(){
+        $sum = UnidadeDeSaude::sum('count');
+        return $sum;
+    }
+
+    public function quantRespoPorUnid(){
+        $count = UnidadeDeSaude::where('count', '>', 0)->count();
+        return $count;
     }
 }
